@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mroberts1's twtxt feed</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #fafafa;
+            color: #333;
+        }
+        .header {
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+        }
+        .subtitle {
+            color: #666;
+            font-style: italic;
+        }
+        .tweet {
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .timestamp {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .content {
+            font-size: 1.1em;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>mroberts1's twtxt feed</h1>
+        <p class="subtitle">Decentralized microblogging</p>
+    </div>
+
+    <div id="tweets">
+        Loading tweets...
+    </div>
+
+    <div class="footer">
+        <p>
+            <strong>Follow this feed:</strong><br>
+            <code>twtxt follow mroberts1 https://raw.githubusercontent.com/mroberts1/twtxt/main/twtxt.txt</code>
+        </p>
+        <p>
+            <a href="twtxt.txt">Raw feed</a> • 
+            <a href="https://github.com/buckket/twtxt">What is twtxt?</a>
+        </p>
+    </div>
+
+    <script>
+        async function loadTweets() {
+            try {
+                const response = await fetch('twtxt.txt');
+                const text = await response.text();
+                const lines = text.trim().split('\n').filter(line => line.trim());
+                
+                const tweetsContainer = document.getElementById('tweets');
+                tweetsContainer.innerHTML = '';
+
+                if (lines.length === 0) {
+                    tweetsContainer.innerHTML = '<p>No tweets yet.</p>';
+                    return;
+                }
+
+                lines.forEach(line => {
+                    const [timestamp, ...contentParts] = line.split('\t');
+                    const content = contentParts.join('\t');
+                    
+                    if (timestamp && content) {
+                        const date = new Date(timestamp);
+                        const formattedDate = date.toLocaleString();
+                        
+                        const tweetDiv = document.createElement('div');
+                        tweetDiv.className = 'tweet';
+                        tweetDiv.innerHTML = `
+                            <div class="timestamp">${formattedDate}</div>
+                            <div class="content">${content}</div>
+                        `;
+                        tweetsContainer.appendChild(tweetDiv);
+                    }
+                });
+            } catch (error) {
+                document.getElementById('tweets').innerHTML = 'Error loading tweets.';
+            }
+        }
+
+        loadTweets();
+    </script>
+</body>
+</html>
