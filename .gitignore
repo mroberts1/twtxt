@@ -1,8 +1,4 @@
-# Virtual environment
-venv/
-.venv/
-
-# Python cache
+# Python cache (if any Python scripts are added later)
 __pycache__/
 *.pyc
 *.pyo
