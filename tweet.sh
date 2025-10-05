@@ -7,8 +7,8 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/twtxt_config"
 
-# Activate virtual environment
-source "$SCRIPT_DIR/venv/bin/activate"
+# Use Homebrew twtxt (no virtual environment needed)
+TWTXT_CMD="/opt/homebrew/bin/twtxt"
 
 # Run twtxt with the local configuration
 if [ $# -eq 0 ]; then
@@ -20,7 +20,7 @@ if [ $# -eq 0 ]; then
     echo "  $0 follow username https://example.com/twtxt.txt"
     echo "  $0 view https://example.com/twtxt.txt"
 else
-    twtxt -c "$CONFIG_FILE" "$@"
+    "$TWTXT_CMD" -c "$CONFIG_FILE" "$@"
     
     # If this was a tweet command, push changes to GitHub
     if [ "$1" = "tweet" ]; then
