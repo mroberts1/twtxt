@@ -8,7 +8,7 @@ twtxt is a decentralised, minimalist microblogging service for hackers. Instead 
 
 ## My Feed
 
-- **Feed URL**: `https://raw.githubusercontent.com/dokoissho/twtxt-setup/main/twtxt.txt`
+- **Feed URL**: `https://raw.githubusercontent.com/mroberts1/twtxt/main/twtxt.txt`
 - **Nick**: dokoissho
 
 ## How to Follow Me
@@ -16,7 +16,7 @@ twtxt is a decentralised, minimalist microblogging service for hackers. Instead 
 If you're using twtxt, you can follow my feed with:
 
 ```bash
-twtxt follow dokoissho https://raw.githubusercontent.com/dokoissho/twtxt-setup/main/twtxt.txt
+twtxt follow mroberts1 https://raw.githubusercontent.com/mroberts1/twtxt/main/twtxt.txt
 ```
 
 ## Setup
