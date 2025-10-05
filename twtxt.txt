@@ -2,3 +2,4 @@
 2025-10-05T17:37:13-04:00	Testing my new twtxt setup! This is being published to GitHub automatically. 🚀
 2025-10-05T17:38:19-04:00	Successfully set up twtxt hosting on GitHub! 🎉
 2025-10-05T17:43:16-04:00	Testing after renaming repository to just 'twtxt' ✨
+2025-10-05T17:45:16-04:00	Testing the new 'tweet' alias! Now I can tweet from anywhere in the terminal 🎯
