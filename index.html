@@ -122,7 +122,7 @@
                     return;
                 }
 
-                lines.forEach(line => {
+                lines.reverse().forEach(line => {
                     const [timestamp, ...contentParts] = line.split('\t');
                     const content = contentParts.join('\t');
                     
