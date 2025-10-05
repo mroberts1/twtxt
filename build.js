@@ -1,4 +1,42 @@
-<!DOCTYPE html>
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+// Read twtxt.txt file
+function readTweets() {
+  try {
+    const content = fs.readFileSync('twtxt.txt', 'utf8');
+    const lines = content.trim().split('\n').filter(line => line.trim());
+    
+    // Parse tweets and reverse for newest first
+    return lines.map(line => {
+      const [timestamp, ...contentParts] = line.split('\t');
+      const content = contentParts.join('\t');
+      return { timestamp, content };
+    }).reverse();
+  } catch (error) {
+    console.error('Error reading twtxt.txt:', error);
+    return [];
+  }
+}
+
+// Generate HTML
+function generateHTML() {
+  const tweets = readTweets();
+  
+  const tweetsHTML = tweets.map(tweet => {
+    const date = new Date(tweet.timestamp);
+    const formattedDate = date.toLocaleString();
+    
+    return `
+    <div class="tweet">
+      <div class="timestamp">${formattedDate}</div>
+      <div class="content">${tweet.content}</div>
+    </div>`;
+  }).join('');
+
+  const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -93,15 +131,7 @@
     </div>
 
     <div id="tweets">
-        
-    <div class="tweet">
-      <div class="timestamp">05/10/2025, 18:12:38</div>
-      <div class="content">Amazing what you can do with AI agents these days ;)</div>
-    </div>
-    <div class="tweet">
-      <div class="timestamp">05/10/2025, 17:47:57</div>
-      <div class="content">Hello World</div>
-    </div>
+        ${tweetsHTML}
     </div>
 
     <div class="footer">
@@ -115,4 +145,21 @@
         </p>
     </div>
 </body>
-</html>
+</html>`;
+
+  return html;
+}
+
+// Write HTML file
+function writeHTML() {
+  try {
+    const html = generateHTML();
+    fs.writeFileSync('index.html', html);
+    console.log('✅ Generated index.html from twtxt.txt');
+  } catch (error) {
+    console.error('Error generating HTML:', error);
+  }
+}
+
+// Run the build
+writeHTML();

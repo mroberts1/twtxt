@@ -1,0 +1,12 @@
+{
+  "name": "twtxt-site",
+  "version": "1.0.0",
+  "description": "Static site generator for twtxt feed",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && echo 'Built index.html - open in browser to view'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
