@@ -24,11 +24,34 @@ twtxt follow mroberts1 https://raw.githubusercontent.com/mroberts1/twtxt/main/tw
 This repository contains:
 - `twtxt.txt` - My twtxt feed file
 - `venv/` - Python virtual environment with twtxt installed
-- Setup scripts and configuration
+- `twtxt_config` - Local twtxt configuration file
+- `tweet.sh` - Helper script for easy tweeting
 
-To use twtxt locally:
-1. Activate the virtual environment: `source venv/bin/activate`
-2. Use twtxt commands: `twtxt tweet "Hello world!"`
+## Usage
+
+### Using the helper script (recommended):
+```bash
+# Post a new tweet (automatically pushes to GitHub)
+./tweet.sh tweet "Hello world!"
+
+# View your following list
+./tweet.sh following
+
+# Follow someone
+./tweet.sh follow username https://example.com/twtxt.txt
+```
+
+### Manual usage:
+```bash
+# Activate the virtual environment
+source venv/bin/activate
+
+# Use twtxt with local config
+twtxt -c twtxt_config tweet "Hello world!"
+
+# Push changes to GitHub
+git add twtxt.txt && git commit -m "New tweet" && git push
+```
 
 ## Format
 
