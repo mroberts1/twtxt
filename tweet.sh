@@ -22,11 +22,13 @@ if [ $# -eq 0 ]; then
 else
     "$TWTXT_CMD" -c "$CONFIG_FILE" "$@"
     
-    # If this was a tweet command, push changes to GitHub
+    # If this was a tweet command, rebuild index.html and push changes to GitHub
     if [ "$1" = "tweet" ]; then
-        echo "Pushing changes to GitHub..."
         cd "$SCRIPT_DIR"
-        git add twtxt.txt
+        echo "Rebuilding index.html..."
+        node build.js
+        echo "Pushing changes to GitHub..."
+        git add twtxt.txt index.html
         git commit -m "New tweet: $(echo "$2" | cut -c1-50)..."
         git push
     fi
