@@ -48,7 +48,7 @@ function generateHTML() {
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
         
         body {
-            font-family: "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", "Fira Code", "IBM Plex Mono", monospace;
+            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
             max-width: 700px;
             margin: 0 auto;
             padding: 20px;
@@ -63,14 +63,14 @@ function generateHTML() {
             padding-bottom: 20px;
         }
         h1 {
-            font-family: "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", "Fira Code", "IBM Plex Mono", monospace;
+            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
             font-weight: 700;
             font-size: 30px;
             color: #333;
             margin: 0;
         }
         .subtitle {
-            font-family: "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", "Fira Code", "IBM Plex Mono", monospace;
+            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
             color: #666;
             font-style: normal;
             font-size: 14px;
@@ -104,7 +104,7 @@ function generateHTML() {
             background: #f5f5f5;
             padding: 2px 4px;
             font-size: 12px;
-            font-family: "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", "Fira Code", "IBM Plex Mono", monospace;
+            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
         }
         a:link {
             text-decoration: none;
