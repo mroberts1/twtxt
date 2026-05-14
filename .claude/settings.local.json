@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "Bash(node build.js)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(./tweet.sh tweet *)",
+      "Bash(/opt/homebrew/bin/twtxt *)",
+      "Read(//Users/dokoissho/**)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(head -n -1 /Users/dokoissho/GitHub/twtxt/twtxt.txt)",
+      "Bash(mv /tmp/twtxt_trimmed.txt /Users/dokoissho/GitHub/twtxt/twtxt.txt)",
+      "Bash(bash *)"
+    ]
+  }
+}
