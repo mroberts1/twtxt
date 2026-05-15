@@ -1,165 +1,68 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const path = require('path');
 
-// Read twtxt.txt file
-function readTweets() {
-  try {
-    const content = fs.readFileSync('twtxt.txt', 'utf8');
-    const lines = content.trim().split('\n').filter(line => line.trim());
-    
-    // Parse tweets and reverse for newest first
-    return lines.map(line => {
-      const [timestamp, ...contentParts] = line.split('\t');
-      const content = contentParts.join('\t');
-      return { timestamp, content };
-    }).reverse();
-  } catch (error) {
-    console.error('Error reading twtxt.txt:', error);
-    return [];
+function slimdown(text) {
+  const rules = [
+    [/!\[([^\]]+)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">'],
+    [/(?<!!)(\[([^\]]+)\])\(([^)]+)\)/g, '<a href="$3">$2</a>'],
+    [/(\*\*|__)(.+?)\1/g, '<strong>$2</strong>'],
+    [/(\*|_)(.+?)\1/g, '<em>$2</em>'],
+    [/~~(.+?)~~/g, '<del>$1</del>'],
+    [/==(.+?)==/g, '<mark>$1</mark>'],
+    [/`([^`]+)`/g, '<code>$1</code>'],
+  ];
+  for (const [regex, replacement] of rules) {
+    text = text.replace(regex, replacement);
   }
+  text = text.replace(/#(\w+)/g, '<span class="tag">#$1</span>');
+  return text;
 }
 
-// Generate HTML
-function generateHTML() {
-  const tweets = readTweets();
-  
-  const tweetsHTML = tweets.map(tweet => {
-    const date = new Date(tweet.timestamp);
-    const formattedDate = date.toLocaleString();
-    
-    return `
-    <div class="tweet">
-      <div class="timestamp">${formattedDate}</div>
-      <div class="content">${tweet.content}</div>
-    </div>`;
-  }).join('');
+function readEntries() {
+  const content = fs.readFileSync('twtxt.txt', 'utf8');
+  return content.trim().split('\n')
+    .filter(line => line.trim())
+    .map(line => {
+      const tab = line.indexOf('\t');
+      return { timestamp: line.slice(0, tab), content: line.slice(tab + 1) };
+    })
+    .reverse();
+}
 
-  const html = `<!DOCTYPE html>
+function generateHTML() {
+  const entries = readEntries();
+
+  const entriesHTML = entries.map(entry => {
+    const date = entry.timestamp.slice(0, 10);
+    const rendered = slimdown(entry.content);
+    return `    <li><span class="g">${date}</span> ${rendered}</li>`;
+  }).join('\n');
+
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>continuous partial awareness</title>
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/hermit');
-        @import 'https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap';
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-        
-        body {
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.5;
-            background-color: #fff;
-            color: #333;
-            font-size: 14pt;
-        }
-        .header {
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-        }
-        h1 {
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-            font-weight: 700;
-            font-size: 30px;
-            color: #333;
-            margin: 0;
-        }
-        .subtitle {
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-            color: #666;
-            font-style: normal;
-            font-size: 14px;
-            font-weight: 400;
-            margin-top: 5px;
-        }
-        .tweet {
-            margin: 20px 0;
-            padding: 0;
-            background: none;
-        }
-        .timestamp {
-            color: #666;
-            font-size: 12px;
-            margin-bottom: 4px;
-            font-weight: 400;
-        }
-        .content {
-            font-size: 14pt;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-        .footer {
-            margin-top: 40px;
-            color: #666;
-            font-size: 12px;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-        }
-        code {
-            background: #f5f5f5;
-            padding: 2px 4px;
-            font-size: 12px;
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-        }
-        a:link {
-            text-decoration: none;
-            color: #235440;
-        }
-        a:visited {
-            text-decoration: none;
-            color: #429A77;
-        }
-        a:hover {
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 3px;
-        }
-        a:active {
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>continuous partial awareness</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>continuous partial awareness</h1>
-        <p class="subtitle"><a href="https://merveilles.town/deck/@dokoissho">dokoissho@merveilles.town</a></p>
-    </div>
-
-    <div id="tweets">
-        ${tweetsHTML}
-    </div>
-
-    <div class="footer">
-        <p>
-            <strong>Follow this feed:</strong><br>
-            <code>twtxt follow mroberts1 https://raw.githubusercontent.com/mroberts1/twtxt/main/twtxt.txt</code>
-        </p>
-        <p>
-            <a href="twtxt.txt">Raw feed</a> • 
-            <a href="https://github.com/buckket/twtxt">What is twtxt?</a>
-        </p>
-    </div>
+  <main>
+    <header>
+      <h1>continuous partial awareness</h1>
+    </header>
+    <ul class="feed">
+${entriesHTML}
+    </ul>
+    <footer class="meta">
+      <a href="twtxt.txt">twtxt feed</a> ·
+      <a href="https://github.com/buckket/twtxt">what is twtxt?</a>
+    </footer>
+  </main>
 </body>
 </html>`;
-
-  return html;
 }
 
-// Write HTML file
-function writeHTML() {
-  try {
-    const html = generateHTML();
-    fs.writeFileSync('index.html', html);
-    console.log('✅ Generated index.html from twtxt.txt');
-  } catch (error) {
-    console.error('Error generating HTML:', error);
-  }
-}
-
-// Run the build
-writeHTML();
+fs.writeFileSync('index.html', generateHTML());
+console.log('Built index.html');

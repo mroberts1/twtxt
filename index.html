@@ -1,147 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>continuous partial awareness</title>
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/hermit');
-        @import 'https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap';
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-        body {
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.5;
-            background-color: #fff;
-            color: #333;
-            font-size: 14pt;
-        }
-
-        .header {
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-        }
-
-        h1 {
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-            font-weight: 700;
-            font-size: 30px;
-            color: #333;
-            margin: 0;
-        }
-
-        .subtitle {
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-            color: #666;
-            font-style: normal;
-            font-size: 14px;
-            font-weight: 400;
-            margin-top: 5px;
-        }
-
-        .tweet {
-            margin: 20px 0;
-            padding: 0;
-            background: none;
-        }
-
-        .timestamp {
-            color: #666;
-            font-size: 12px;
-            margin-bottom: 4px;
-            font-weight: 400;
-        }
-
-        .content {
-            font-size: 14pt;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-
-        .footer {
-            margin-top: 40px;
-            color: #666;
-            font-size: 12px;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-        }
-
-        code {
-            background: #f5f5f5;
-            padding: 2px 4px;
-            font-size: 12px;
-            font-family: "IBM Plex Mono", "Fira Code", "Hermit", "Hurmit Nerd Font", "HurmitNerdFont", monospace;
-        }
-
-        a:link {
-            text-decoration: none;
-            color: #235440;
-        }
-
-        a:visited {
-            text-decoration: none;
-            color: #429A77;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 3px;
-        }
-
-        a:active {
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>continuous partial awareness</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="header">
-        <h1>continuous partial awareness</h1>
-        <p class="subtitle"><a href="https://merveilles.town/deck/@dokoissho">dokoissho</a></p>
-    </div>
-
-    <div id="tweets">
-
-        <div class="tweet">
-            <div class="timestamp">14/05/2026, 18:44:17</div>
-            <div class="content">I am so tired of hearing film professors banging on about “AI”, as if they had any kind
-                of clue what they are talking about</div>
-        </div>
-        <div class="tweet">
-            <div class="timestamp">14/05/2026, 13:20:48</div>
-            <div class="content">I don't read anymore, I INGEST</div>
-        </div>
-        <div class="tweet">
-            <div class="timestamp">10/05/2026, 21:48:00</div>
-            <div class="content">What do you do when running your token optimizer skill maxes out your API credits?
-            </div>
-        </div>
-        <div class="tweet">
-            <div class="timestamp">07/10/2025, 06:53:25</div>
-            <div class="content">I have so many apps on my phone that I need a Find My Find My app</div>
-        </div>
-        <div class="tweet">
-            <div class="timestamp">05/10/2025, 17:47:57</div>
-            <div class="content">Hello World</div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>
-            <strong>RSS</strong><br>
-            <code>twtxt follow mroberts1 https://raw.githubusercontent.com/mroberts1/twtxt/main/twtxt.txt</code>
-        </p>
-        <p>
-            <a href="twtxt.txt">Raw feed</a> •
-            <a href="https://github.com/buckket/twtxt">What is twtxt?</a>
-        </p>
-    </div>
+  <main>
+    <header>
+      <h1>continuous partial awareness</h1>
+    </header>
+    <ul class="feed">
+    <li><span class="g">2026-05-14</span> I am so tired of hearing film professors banging on about “AI”, as if they had any kind of clue what they are talking about</li>
+    <li><span class="g">2026-05-14</span> I don't read anymore, I INGEST</li>
+    <li><span class="g">2026-05-10</span> What do you do when running your token optimizer skill maxes out your API credits?</li>
+    <li><span class="g">2025-10-07</span> I have so many apps on my phone that I need a Find My Find My app</li>
+    <li><span class="g">2025-10-05</span> Hello World</li>
+    </ul>
+    <footer class="meta">
+      <a href="twtxt.txt">twtxt feed</a> ·
+      <a href="https://github.com/buckket/twtxt">what is twtxt?</a>
+    </footer>
+  </main>
 </body>
-
 </html>
