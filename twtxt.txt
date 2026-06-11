@@ -3,3 +3,5 @@
 2026-05-10T21:48:00-04:00	What do you do when running your token optimizer skill maxes out your API credits?
 2026-05-14T13:20:48-04:00	I don't read anymore, I INGEST
 2026-05-14T18:44:17-04:00	I am so tired of hearing film professors banging on about “AI”, as if they had any kind of clue what they are talking about
+2026-06-09T12:16:34+09:00	API credits are the new box office.
+2026-06-12T08:35:07+09:00	The concept of synthesis is more useful than artificiality in connection with generative media tools. Synthetic fabrics have been used in the garment industry for decades, while nobody complains anymore that synthesized music is inferior to music played on acoustic instruments. So why are synthetic artworks of all kinds routinely dismissed as inferior to human-produced art?
