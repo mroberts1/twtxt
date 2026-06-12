@@ -44,13 +44,13 @@ function generateHTML() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>continuous partial awareness</title>
+  <title>continuous partial attention</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main>
     <header>
-      <h1>continuous partial awareness</h1>
+      <h1>continuous partial attention</h1>
     </header>
     <ul class="feed">
 ${entriesHTML}
