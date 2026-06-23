@@ -6,3 +6,4 @@
 2026-06-09T12:16:34+09:00	API credits are the new box office.
 2026-06-12T08:35:07+09:00	The concept of synthesis is more useful than artificiality in connection with generative media tools. Synthetic fabrics have been used in the garment industry for decades, while nobody complains anymore that synthesized music is inferior to music played on acoustic instruments. So why are synthetic artworks of all kinds routinely dismissed as inferior to human-produced art?
 2026-06-23T11:07:01+01:00	Planning house cleaning with Claude Cowork is much more fun than actual house cleaning.
+2026-06-23T11:07:38+01:00	There are people who publish and people who comment. Which one are you?
